@@ -1,6 +1,9 @@
 // app/layout.tsx
 import { fonts } from './fonts'
 import { Providers } from './providers'
+import { Box } from "@chakra-ui/react"
+
+
 
 export default function RootLayout({
   children,
@@ -15,3 +18,4 @@ export default function RootLayout({
     </html>
   )
 }
+
