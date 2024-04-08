@@ -58,7 +58,7 @@ const App = () => {
                     pointerEvents="none"
                     children={<CFaUserAlt color="gray.300" />}
                   />
-                  <Input type="email" placeholder="email address" />
+                  <Input type="email" placeholder="Email address" />
                 </InputGroup>
               </FormControl>
               <FormControl>
@@ -79,7 +79,7 @@ const App = () => {
                   </InputRightElement>
                 </InputGroup>
                 <FormHelperText textAlign="right">
-                  <Link>forgot password?</Link>
+                  <Link href="forget-password">Forgot password?</Link>
                 </FormHelperText>
               </FormControl>
               <Button

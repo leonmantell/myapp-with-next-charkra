@@ -42,8 +42,8 @@ const App = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Avatar size="xl" bg="teal.500" />
-        <Heading color="teal.400">Welcome</Heading>
+        <Avatar size="xl" bg="pink.400" />
+        <Heading color="pink.400">Welcome</Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
           <form>
             <Stack
@@ -58,16 +58,7 @@ const App = () => {
                     pointerEvents="none"
                     children={<CFaUserAlt color="gray.300" />}
                   />
-                  <Input type="username" placeholder="Username" />
-                </InputGroup>
-              </FormControl>
-              <FormControl>
-                <InputGroup>
-                  <InputLeftElement
-                    pointerEvents="none"
-                    children={<CFaUserAlt color="gray.300" />}
-                  />
-                  <Input type="email" placeholder="Email Address" />
+                  <Input type="email" placeholder="Email address" />
                 </InputGroup>
               </FormControl>
               <FormControl>
@@ -87,36 +78,18 @@ const App = () => {
                     </Button>
                   </InputRightElement>
                 </InputGroup>
-              </FormControl>
-              <FormControl>
-                <InputGroup>
-                  <InputLeftElement
-                    pointerEvents="none"
-                    color="gray.300"
-                    children={<CFaLock color="gray.300" />}
-                  />
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Confirm Password"
-                  />
-                  <InputRightElement width="4.5rem">
-                    {/* <Button h="1.75rem" size="sm" onClick={handleShowClick}>
-                      {showPassword ? "Hide" : "Show"}
-                    </Button> */}
-                  </InputRightElement>
-                </InputGroup>
                 <FormHelperText textAlign="right">
-                  <Link href="forget-password">Forgot password?</Link>
+                  <Link>Forgot password?</Link>
                 </FormHelperText>
               </FormControl>
               <Button
                 borderRadius={0}
                 type="submit"
                 variant="solid"
-                colorScheme="whatsapp"
+                colorScheme="purple"
                 width="full"
               >
-                Signup
+                Reset
               </Button>
             </Stack>
           </form>
@@ -124,8 +97,8 @@ const App = () => {
       </Stack>
       <Box>
         New to us?{" "}
-        <Link color="pink.500" href="login">
-          Log in
+        <Link color="teal.500" href="signup">
+          Sign Up
         </Link>
       </Box>
     </Flex>
