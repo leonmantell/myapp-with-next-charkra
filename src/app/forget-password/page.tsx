@@ -53,7 +53,7 @@ const App = () => {
               boxShadow="md"
             >
               <FormControl>
-                <InputGroup>
+                <InputGroup mb={5}>
                   <InputLeftElement
                     pointerEvents="none"
                     children={<CFaUserAlt color="gray.300" />}
@@ -61,32 +61,12 @@ const App = () => {
                   <Input type="email" placeholder="Email address" />
                 </InputGroup>
               </FormControl>
-              <FormControl>
-                <InputGroup>
-                  <InputLeftElement
-                    pointerEvents="none"
-                    color="gray.300"
-                    children={<CFaLock color="gray.300" />}
-                  />
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Password"
-                  />
-                  <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm" onClick={handleShowClick}>
-                      {showPassword ? "Hide" : "Show"}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-                <FormHelperText textAlign="right">
-                  <Link>Forgot password?</Link>
-                </FormHelperText>
-              </FormControl>
+
               <Button
                 borderRadius={0}
                 type="submit"
                 variant="solid"
-                colorScheme="purple"
+                colorScheme="pink"
                 width="full"
               >
                 Reset

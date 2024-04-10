@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   Flex,
   Heading,
@@ -16,16 +16,57 @@ import {
   FormHelperText,
   InputRightElement,
 } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 import { FaUserAlt, FaLock } from "react-icons/fa";
+import axios from "axios";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 const App = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleShowClick = () => setShowPassword(!showPassword);
+  const toast = useToast();
+  const onLogin = async (event: any) => {
+    event.preventDefault();
+
+    if (!email || !password) {
+      return toast({
+        title: "Incomplete Information",
+        description: "Please fill in both email and password fields.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+    const sendData = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      console.log("logon button pressed", sendData);
+      const response = await axios.post(
+        "http://localhost:8000/users/login",
+        sendData
+      );
+      console.log(response.data); // Handle the response as needed
+    } catch (error) {
+      console.error("An error occurred:", error);
+      // Show a more specific error message to the user
+      return toast({
+        title: "Login Failed",
+        description: "Please check your email and password and try again.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
 
   return (
     <Flex
@@ -42,10 +83,10 @@ const App = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Avatar size="xl" bg="pink.400" />
-        <Heading color="pink.400">Welcome</Heading>
+        <Avatar size="xl" bg="purple.400" />
+        <Heading color="purple.400">Welcome</Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
-          <form>
+          <form onSubmit={onLogin}>
             <Stack
               spacing={4}
               p="1rem"
@@ -58,7 +99,11 @@ const App = () => {
                     pointerEvents="none"
                     children={<CFaUserAlt color="gray.300" />}
                   />
-                  <Input type="email" placeholder="Email address" />
+                  <Input
+                    type="email"
+                    placeholder="Email address"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </InputGroup>
               </FormControl>
               <FormControl>
@@ -71,6 +116,7 @@ const App = () => {
                   <Input
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleShowClick}>
@@ -79,14 +125,16 @@ const App = () => {
                   </InputRightElement>
                 </InputGroup>
                 <FormHelperText textAlign="right">
-                  <Link href="forget-password">Forgot password?</Link>
+                  <Link color="red" href="forget-password">
+                    Forgot password?
+                  </Link>
                 </FormHelperText>
               </FormControl>
               <Button
                 borderRadius={0}
                 type="submit"
                 variant="solid"
-                colorScheme="teal"
+                colorScheme="purple"
                 width="full"
               >
                 Login
@@ -97,7 +145,7 @@ const App = () => {
       </Stack>
       <Box>
         New to us?{" "}
-        <Link color="teal.500" href="signup">
+        <Link color="whatsapp.500" href="signup">
           Sign Up
         </Link>
       </Box>
