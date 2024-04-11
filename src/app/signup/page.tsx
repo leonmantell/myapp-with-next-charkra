@@ -49,10 +49,26 @@ const App = () => {
     if (newData.password === newData.repassword) {
       try {
         const response = await axios.post(
-          "http://localhost:8000/users",
+          "http://localhost:8000/users/signup",
           sendData
         );
-        console.log(response.data); // Handle the response as needed
+        if (response.data.status) {
+          toast({
+            title: "Account Successfully.",
+            description: response.data.msg,
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          });
+        } else {
+          toast({
+            title: "Account creation failed.",
+            description: response.data.msg,
+            status: "warning",
+            duration: 9000,
+            isClosable: true,
+          });
+        }
       } catch (error) {
         console.error("An error occurred:", error);
         // Show an error message to the user if the request fails
