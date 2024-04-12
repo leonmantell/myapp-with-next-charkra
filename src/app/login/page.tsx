@@ -17,7 +17,7 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
-
+import { useRouter } from "next/navigation";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import axios from "axios";
 
@@ -28,7 +28,7 @@ const App = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const router = useRouter();
   const handleShowClick = () => setShowPassword(!showPassword);
   const toast = useToast();
   const onLogin = async (event: any) => {
@@ -54,9 +54,26 @@ const App = () => {
         "http://localhost:8000/users/login",
         sendData
       );
+      if (response.data.status) {
+        toast({
+          title: `Login Successfully.`,
+          description: response.data.msg,
+          status: `success`,
+          duration: 9000,
+          isClosable: true,
+        });
+        router.push(`/welcome`);
+      } else {
+        toast({
+          title: "Login failed.",
+          description: response.data.msg,
+          status: "warning",
+          duration: 9000,
+          isClosable: true,
+        });
+      }
       console.log(response.data); // Handle the response as needed
     } catch (error) {
-      console.error("An error occurred:", error);
       // Show a more specific error message to the user
       return toast({
         title: "Login Failed",

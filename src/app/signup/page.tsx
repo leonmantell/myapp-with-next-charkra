@@ -17,7 +17,7 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
-
+import { useRouter } from "next/navigation";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import axios from "axios";
 
@@ -30,7 +30,7 @@ const App = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repassword, setRePassword] = useState("");
-
+  const router = useRouter();
   const handleShowClick = () => setShowPassword(!showPassword);
   const toast = useToast();
   const onSignup = async (event: any) => {
@@ -60,6 +60,7 @@ const App = () => {
             duration: 9000,
             isClosable: true,
           });
+          router.push("/welcome");
         } else {
           toast({
             title: "Account creation failed.",
@@ -183,11 +184,6 @@ const App = () => {
                       setRePassword(e.target.value);
                     }}
                   />
-                  <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm" onClick={handleShowClick}>
-                      {showPassword ? "Hide" : "Show"}
-                    </Button>
-                  </InputRightElement>
                 </InputGroup>
                 <FormHelperText textAlign="right">
                   <Link color="red" href="forget-password">
@@ -210,7 +206,7 @@ const App = () => {
       </Stack>
       <Box>
         New to us?{" "}
-        <Link color="purple.500" href="login">
+        <Link color="purple.500" href="/login">
           Log in
         </Link>
       </Box>
