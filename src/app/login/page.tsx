@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Flex,
   Heading,
@@ -31,6 +31,18 @@ const App = () => {
   const router = useRouter();
   const handleShowClick = () => setShowPassword(!showPassword);
   const toast = useToast();
+
+  useEffect(() => {
+    // const email = JSON.parse()
+    // console.log(localStorage.getItem("authentication"));
+    const stringUser: any = localStorage.getItem("authentication");
+    console.log();
+    const email = JSON.parse(stringUser).email;
+    if (email) {
+      router.push("/welcome");
+    }
+  }, []);
+
   const onLogin = async (event: any) => {
     event.preventDefault();
 
@@ -62,6 +74,10 @@ const App = () => {
           duration: 9000,
           isClosable: true,
         });
+        localStorage.setItem(
+          "authentication",
+          JSON.stringify({ email: email })
+        );
         router.push(`/welcome`);
       } else {
         toast({

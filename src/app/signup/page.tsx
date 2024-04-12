@@ -33,6 +33,7 @@ const App = () => {
   const router = useRouter();
   const handleShowClick = () => setShowPassword(!showPassword);
   const toast = useToast();
+
   const onSignup = async (event: any) => {
     event.preventDefault();
     const newData = {
@@ -57,9 +58,13 @@ const App = () => {
             title: "Account Successfully.",
             description: response.data.msg,
             status: "success",
-            duration: 9000,
+            duration: 1000,
             isClosable: true,
           });
+          const _user = {
+            email: email,
+          };
+          localStorage.setItem("authentication", JSON.stringify(_user));
           router.push("/welcome");
         } else {
           toast({
@@ -93,6 +98,9 @@ const App = () => {
     }
     console.log("newData", newData);
   };
+
+  localStorage.setItem("email", email);
+  localStorage.setItem("username", userName);
 
   return (
     <Flex
