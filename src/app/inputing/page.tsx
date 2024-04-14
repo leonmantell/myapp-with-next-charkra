@@ -44,7 +44,7 @@ export function App() {
       justifyContent="center"
       alignItems="center"
     >
-      <Box width="1440px" height="72px" p={[4, 18]} boxShadow={"sm"}>
+      <Box p={[4, 18]} boxShadow={"sm"}>
         <Stack direction="row" spacing={4} align="center">
           <Button
             width="200px"
@@ -61,69 +61,129 @@ export function App() {
           </Button>
         </Stack>
       </Box>
-      <Box height="952px" p={[4, 18]}>
-        <Box
-          p={5}
-          border="2px"
-          borderColor="#277351"
-          borderRadius="10"
-          mx="420px"
-          my="137px"
-        >
-          <Stack
-            spacing={6}
-            flexDir="column"
-            mb="2"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <FormControl width="552px" height="64px">
-              <FormLabel>Contract Address</FormLabel>
-              <Input placeholder="Enter contract address" />
-            </FormControl>
-            <FormControl width="552px" height="64px">
-              <FormLabel>Function</FormLabel>
-              <Select onChange={handleChange}>
-                <option value="option1" color="#277351">
-                  Step 1: registerSender
-                </option>
-                <option value="option2" color="#277351">
-                  Step 2: fullWithdrawalRequest
-                </option>
-                <option value="option3" color="#277351">
-                  Step 3: withdraw
-                </option>
-              </Select>
-            </FormControl>
-            <FormControl width="552px" height="64px" isDisabled={id}>
-              <FormLabel>Vault ID</FormLabel>
-              <Input placeholder="Enter vault ID" />
-            </FormControl>
-            <FormControl width="552px" height="64px" isDisabled={type}>
-              <FormLabel>Asset Type</FormLabel>
-              <Input placeholder="Enter asset type" />
-            </FormControl>
-            <FormControl width="552px" height="64px" isDisabled={key}>
-              <FormLabel>Stark Key</FormLabel>
-              <Input placeholder="Enter start key" />
-            </FormControl>
-            <FormControl width="552px" height="64px" isDisabled={signature}>
-              <FormLabel>Stark Signature</FormLabel>
-              <Input placeholder="Enter stark signature" />
-            </FormControl>
-          </Stack>
+      <Box height="952px" sx={{ display: "flex", alignItems: "center" }}>
+        <Box>
           <Box
-            height="96px"
-            pl="auto"
-            sx={{ alignContent: "space-evenly", textAlign: "right" }}
+            border="2px"
+            borderColor="#277351"
+            borderRadius="10"
+            py="auto"
+            //sx={{ display: "flex", alignItems: "center" }}
           >
-            <Button
-              width="216px"
-              height="48px"
-              sx={{ background: "#277351", textColor: "white" }}
+            <Stack
+              spacing={6}
+              flexDir="column"
+              // mb="2"
+              justifyContent="center"
+              alignItems="center"
             >
-              Submit Transaction
-            </Button>
+              <FormControl width="552px" height="64px" mt="19px" mx="24px">
+                <FormLabel
+                  sx={{ fontSize: "18px !important" }}
+                  mb="-14px"
+                  ml="18px"
+                >
+                  Contract Address
+                </FormLabel>
+                <Input
+                  sx={{ fontSize: "14px" }}
+                  placeholder="Enter contract address"
+                />
+              </FormControl>
+              <FormControl width="552px" height="64px" mt="19px" mx="24px">
+                <FormLabel
+                  sx={{ fontSize: "18px !important" }}
+                  mb="-14px"
+                  ml="18px"
+                >
+                  Function
+                </FormLabel>
+                <Select onChange={handleChange}>
+                  <option value="option1">Step 1: registerSender</option>
+                  <option value="option2">Step 2: fullWithdrawalRequest</option>
+                  <option value="option3">Step 3: withdraw</option>
+                </Select>
+              </FormControl>
+              <FormControl
+                width="552px"
+                height="64px"
+                mt="19px"
+                mx="24px"
+                isDisabled={id}
+              >
+                <FormLabel
+                  sx={{ fontSize: "18px !important" }}
+                  mb="-14px"
+                  ml="18px"
+                >
+                  Vault ID
+                </FormLabel>
+                <Input placeholder="Enter vault ID" />
+              </FormControl>
+              <FormControl
+                width="552px"
+                height="64px"
+                mt="19px"
+                mx="24px"
+                isDisabled={type}
+              >
+                <FormLabel
+                  sx={{ fontSize: "18px !important" }}
+                  mb="-14px"
+                  ml="18px"
+                >
+                  Asset Type
+                </FormLabel>
+                <Input placeholder="Enter asset type" />
+              </FormControl>
+              <FormControl
+                width="552px"
+                height="64px"
+                mt="19px"
+                mx="24px"
+                isDisabled={key}
+              >
+                <FormLabel
+                  sx={{ fontSize: "18px !important" }}
+                  mb="-14px"
+                  ml="18px"
+                >
+                  Stark Key
+                </FormLabel>
+                <Input placeholder="Enter start key" />
+              </FormControl>
+              <FormControl
+                width="552px"
+                height="64px"
+                mt="19px"
+                mx="24px"
+                isDisabled={signature}
+              >
+                <FormLabel
+                  sx={{ fontSize: "18px !important" }}
+                  mb="-14px"
+                  ml="18px"
+                >
+                  Stark Signature
+                </FormLabel>
+                <Input placeholder="Enter stark signature" />
+              </FormControl>
+            </Stack>
+            <Box
+              height="96px"
+              pl="auto"
+              sx={{ alignContent: "space-evenly", textAlign: "right" }}
+            >
+              <Button
+                width="216px"
+                height="48px"
+                mx="24px"
+                my="24px"
+                sx={{ background: "#277351", textColor: "white" }}
+              >
+                Submit Transaction
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Box>

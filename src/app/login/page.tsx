@@ -78,7 +78,7 @@ const App = () => {
           "authentication",
           JSON.stringify({ email: email })
         );
-        router.push(`/welcome`);
+        router.push(`/inputing`);
       } else {
         toast({
           title: "Login failed.",
