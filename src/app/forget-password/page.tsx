@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   Flex,
   Heading,
@@ -16,17 +16,65 @@ import {
   FormHelperText,
   InputRightElement,
 } from "@chakra-ui/react";
-
+import { useToast } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 import { FaUserAlt, FaLock } from "react-icons/fa";
+import axios from "axios";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 const App = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  console.log(email);
+  const toast = useToast();
+  const router = useRouter();
 
-  const handleShowClick = () => setShowPassword(!showPassword);
+  const reset = async (event: any) => {
+    event.preventDefault();
 
+    const sendData = {
+      email: email,
+    };
+
+    try {
+      console.log("reset button pressed", sendData);
+      const response = await axios.post(
+        "http://localhost:8000/users/reset",
+        sendData
+      );
+      console.log(response.data);
+      if (response.data.status) {
+        toast({
+          title: `reset Successfully.`,
+          description: response.data.msg,
+          status: `success`,
+          duration: 9000,
+          isClosable: true,
+        });
+        router.push("/signup");
+      } else {
+        toast({
+          title: `reset failed`,
+          description: response.data.msg,
+          status: `error`,
+          duration: 9000,
+          isClosable: true,
+        });
+      }
+
+      console.log(response.data); // Handle the response as needed
+    } catch (error) {
+      // Show a more specific error message to the user
+      return toast({
+        title: "reset Failed",
+        description: "Please check your email.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
   return (
     <Flex
       flexDirection="column"
@@ -45,7 +93,7 @@ const App = () => {
         <Avatar size="xl" bg="pink.400" />
         <Heading color="pink.400">Welcome</Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
-          <form>
+          <form onSubmit={reset}>
             <Stack
               spacing={4}
               p="1rem"
@@ -53,40 +101,24 @@ const App = () => {
               boxShadow="md"
             >
               <FormControl>
-                <InputGroup>
+                <InputGroup mb={5}>
                   <InputLeftElement
                     pointerEvents="none"
                     children={<CFaUserAlt color="gray.300" />}
                   />
-                  <Input type="email" placeholder="Email address" />
-                </InputGroup>
-              </FormControl>
-              <FormControl>
-                <InputGroup>
-                  <InputLeftElement
-                    pointerEvents="none"
-                    color="gray.300"
-                    children={<CFaLock color="gray.300" />}
-                  />
                   <Input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Password"
+                    type="email"
+                    placeholder="Email address"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
-                  <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm" onClick={handleShowClick}>
-                      {showPassword ? "Hide" : "Show"}
-                    </Button>
-                  </InputRightElement>
                 </InputGroup>
-                <FormHelperText textAlign="right">
-                  <Link>Forgot password?</Link>
-                </FormHelperText>
               </FormControl>
+
               <Button
                 borderRadius={0}
                 type="submit"
                 variant="solid"
-                colorScheme="purple"
+                colorScheme="pink"
                 width="full"
               >
                 Reset
