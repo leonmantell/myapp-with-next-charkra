@@ -12,8 +12,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { endianness } from "os";
-import { FaLess } from "react-icons/fa6";
-import { FaLaptopHouse } from "react-icons/fa";
+// import { FaLess } from "react-icons/fa6";
+// import { FaLaptopHouse } from "react-icons/fa";
 
 export function App() {
   const [id, setId] = useState(true);
