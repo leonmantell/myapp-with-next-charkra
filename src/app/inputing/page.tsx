@@ -91,9 +91,15 @@ export function App() {
                   Function
                 </FormLabel>
                 <Select onChange={handleChange}>
-                  <option value="option1">Step 1: registerSender</option>
-                  <option value="option2">Step 2: fullWithdrawalRequest</option>
-                  <option value="option3">Step 3: withdraw</option>
+                  <option style={{ color: "#277351" }} value="option1">
+                    Step 1: registerSender
+                  </option>
+                  <option style={{ color: "#277351" }} value="option2">
+                    Step 2: fullWithdrawalRequest
+                  </option>
+                  <option style={{ color: "#277351" }} value="option3">
+                    Step 3: withdraw
+                  </option>
                 </Select>
               </FormControl>
               <FormControl
