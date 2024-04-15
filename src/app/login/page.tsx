@@ -39,7 +39,7 @@ const App = () => {
     console.log();
     const email = JSON.parse(stringUser).email;
     if (email) {
-      router.push("/welcome");
+      router.push("/inputing");
     }
   }, []);
 
@@ -78,7 +78,7 @@ const App = () => {
           "authentication",
           JSON.stringify({ email: email })
         );
-        router.push(`/welcome`);
+        router.push(`/inputing`);
       } else {
         toast({
           title: "Login failed.",
