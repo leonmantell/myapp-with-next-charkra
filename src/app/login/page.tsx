@@ -33,11 +33,9 @@ const App = () => {
   const toast = useToast();
 
   useEffect(() => {
-    // const email = JSON.parse()
-    // console.log(localStorage.getItem("authentication"));
     const stringUser: any = localStorage.getItem("authentication");
     console.log();
-    const email = JSON.parse(stringUser).email;
+    const email = JSON.parse(stringUser)?.email;
     if (email) {
       router.push("/inputing");
     }

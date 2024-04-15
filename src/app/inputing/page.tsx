@@ -44,17 +44,17 @@ export function App() {
       justifyContent="center"
       alignItems="center"
     >
-      <Box width="100vw" p={[4, 18]} boxShadow={"md"}>
+      <Box height="72px" width="100vw" p={[4, 18]} boxShadow={"md"}>
         <Flex justifyContent="end">
           <Button
-            width="200px"
+            width="150px"
             height="40px"
             colorScheme="teal"
             backgroundColor="#FF7E1D"
             borderRadius="10px"
           >
             <Text fontSize="18px" fontFamily="Public Sans">
-              Connect Wallet
+              Log out
             </Text>
           </Button>
         </Flex>
