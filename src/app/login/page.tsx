@@ -39,7 +39,7 @@ const App = () => {
     console.log();
     const email = JSON.parse(stringUser).email;
     if (email) {
-      router.push("/welcome");
+      router.push("/inputing");
     }
   }, []);
 

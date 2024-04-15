@@ -38,8 +38,8 @@ export function App() {
   return (
     <Flex
       flexDirection="column"
-      width="100%"
-      height="100%"
+      width="100vw"
+      height="100vh"
       backgroundColor="white"
       justifyContent="center"
       alignItems="center"
