@@ -14,12 +14,14 @@ import {
 import { endianness } from "os";
 // import { FaLess } from "react-icons/fa6";
 // import { FaLaptopHouse } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 export function App() {
   const [id, setId] = useState(true);
   const [type, setType] = useState(true);
   const [key, setKey] = useState(false);
   const [signature, setSignature] = useState(false);
+  const router = useRouter();
 
   const handleChange = (event: any) => {
     switch (event.target.value) {
@@ -52,6 +54,10 @@ export function App() {
             colorScheme="teal"
             backgroundColor="#FF7E1D"
             borderRadius="10px"
+            onClick={() => {
+              localStorage.clear();
+              router.push("/login");
+            }}
           >
             <Text fontSize="18px" fontFamily="Public Sans">
               Log out
@@ -59,6 +65,7 @@ export function App() {
           </Button>
         </Flex>
       </Box>
+
       <Box height="952px" sx={{ display: "flex", alignItems: "center" }}>
         <Box>
           <Box border="2px" borderColor="#277351" borderRadius="10" py="auto">

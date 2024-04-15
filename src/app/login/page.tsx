@@ -69,7 +69,7 @@ const App = () => {
           title: `Login Successfully.`,
           description: response.data.msg,
           status: `success`,
-          duration: 9000,
+          duration: 1000,
           isClosable: true,
         });
         localStorage.setItem(
