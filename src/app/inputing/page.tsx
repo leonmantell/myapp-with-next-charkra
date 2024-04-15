@@ -38,20 +38,18 @@ export function App() {
   return (
     <Flex
       flexDirection="column"
-      width="100vw"
-      height="100vh"
+      width="100%"
+      height="100%"
       backgroundColor="white"
       justifyContent="center"
       alignItems="center"
     >
-      <Box p={[4, 18]} boxShadow={"sm"}>
-        <Stack direction="row" spacing={4} align="center">
+      <Box width="100vw" p={[4, 18]} boxShadow={"md"}>
+        <Flex justifyContent="end">
           <Button
             width="200px"
             height="40px"
             colorScheme="teal"
-            variant="solid"
-            ml="auto"
             backgroundColor="#FF7E1D"
             borderRadius="10px"
           >
@@ -59,17 +57,11 @@ export function App() {
               Connect Wallet
             </Text>
           </Button>
-        </Stack>
+        </Flex>
       </Box>
       <Box height="952px" sx={{ display: "flex", alignItems: "center" }}>
         <Box>
-          <Box
-            border="2px"
-            borderColor="#277351"
-            borderRadius="10"
-            py="auto"
-            //sx={{ display: "flex", alignItems: "center" }}
-          >
+          <Box border="2px" borderColor="#277351" borderRadius="10" py="auto">
             <Stack
               spacing={6}
               flexDir="column"
