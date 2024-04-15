@@ -14,12 +14,14 @@ import {
 import { endianness } from "os";
 // import { FaLess } from "react-icons/fa6";
 // import { FaLaptopHouse } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 export function App() {
   const [id, setId] = useState(true);
   const [type, setType] = useState(true);
   const [key, setKey] = useState(false);
   const [signature, setSignature] = useState(false);
+  const router = useRouter();
 
   const handleChange = (event: any) => {
     switch (event.target.value) {
@@ -44,37 +46,37 @@ export function App() {
       justifyContent="center"
       alignItems="center"
     >
-      <Box width="100vw" p={[4, 18]} boxShadow={"md"}>
+      <Box height="72px" width="100vw" p={[4, 18]} boxShadow={"md"}>
         <Flex justifyContent="end">
           <Button
-            width="200px"
+            width="150px"
             height="40px"
             colorScheme="teal"
             backgroundColor="#FF7E1D"
             borderRadius="10px"
+            onClick={() => {
+              localStorage.clear();
+              router.push("/login");
+            }}
           >
             <Text fontSize="18px" fontFamily="Public Sans">
-              Connect Wallet
+              Log out
             </Text>
           </Button>
         </Flex>
       </Box>
+
       <Box height="952px" sx={{ display: "flex", alignItems: "center" }}>
         <Box>
           <Box border="2px" borderColor="#277351" borderRadius="10" py="auto">
             <Stack
               spacing={6}
               flexDir="column"
-              // mb="2"
               justifyContent="center"
               alignItems="center"
             >
-              <FormControl width="552px" height="64px" mt="19px" mx="24px">
-                <FormLabel
-                  sx={{ fontSize: "18px !important" }}
-                  mb="-14px"
-                  ml="18px"
-                >
+              <FormControl width="552px" height="64px" mt="14px" mx="24px">
+                <FormLabel sx={{ fontSize: "18px !important" }} ml="18px">
                   Contract Address
                 </FormLabel>
                 <Input
@@ -83,11 +85,7 @@ export function App() {
                 />
               </FormControl>
               <FormControl width="552px" height="64px" mt="19px" mx="24px">
-                <FormLabel
-                  sx={{ fontSize: "18px !important" }}
-                  mb="-14px"
-                  ml="18px"
-                >
+                <FormLabel sx={{ fontSize: "18px !important" }} ml="18px">
                   Function
                 </FormLabel>
                 <Select onChange={handleChange}>
@@ -105,15 +103,11 @@ export function App() {
               <FormControl
                 width="552px"
                 height="64px"
-                mt="19px"
+                mt="14px"
                 mx="24px"
                 isDisabled={id}
               >
-                <FormLabel
-                  sx={{ fontSize: "18px !important" }}
-                  mb="-14px"
-                  ml="18px"
-                >
+                <FormLabel sx={{ fontSize: "18px !important" }} ml="18px">
                   Vault ID
                 </FormLabel>
                 <Input placeholder="Enter vault ID" />
@@ -121,15 +115,11 @@ export function App() {
               <FormControl
                 width="552px"
                 height="64px"
-                mt="19px"
+                mt="14px"
                 mx="24px"
                 isDisabled={type}
               >
-                <FormLabel
-                  sx={{ fontSize: "18px !important" }}
-                  mb="-14px"
-                  ml="18px"
-                >
+                <FormLabel sx={{ fontSize: "18px !important" }} ml="18px">
                   Asset Type
                 </FormLabel>
                 <Input placeholder="Enter asset type" />
@@ -137,15 +127,11 @@ export function App() {
               <FormControl
                 width="552px"
                 height="64px"
-                mt="19px"
+                mt="14px"
                 mx="24px"
                 isDisabled={key}
               >
-                <FormLabel
-                  sx={{ fontSize: "18px !important" }}
-                  mb="-14px"
-                  ml="18px"
-                >
+                <FormLabel sx={{ fontSize: "18px !important" }} ml="18px">
                   Stark Key
                 </FormLabel>
                 <Input placeholder="Enter start key" />
@@ -153,15 +139,11 @@ export function App() {
               <FormControl
                 width="552px"
                 height="64px"
-                mt="19px"
+                mt="14px"
                 mx="24px"
                 isDisabled={signature}
               >
-                <FormLabel
-                  sx={{ fontSize: "18px !important" }}
-                  mb="-14px"
-                  ml="18px"
-                >
+                <FormLabel sx={{ fontSize: "18px !important" }} ml="18px">
                   Stark Signature
                 </FormLabel>
                 <Input placeholder="Enter stark signature" />
