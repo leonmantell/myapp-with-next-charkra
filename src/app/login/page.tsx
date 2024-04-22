@@ -76,7 +76,10 @@ const App = () => {
           "authentication",
           JSON.stringify({ email: email })
         );
-        router.push(`/inputing`);
+        if (response.data.isAdmin) {
+          console.log(response.data.users);
+          router.push("/admin");
+        } else router.push(`/inputing`);
       } else {
         toast({
           title: "Login failed.",
