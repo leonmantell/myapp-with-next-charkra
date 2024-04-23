@@ -20,6 +20,7 @@ import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import axios from "axios";
+import { useUserContext } from "@/context/UserContext";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -31,10 +32,10 @@ const App = () => {
   const router = useRouter();
   const handleShowClick = () => setShowPassword(!showPassword);
   const toast = useToast();
+  const { setUsername, setEmail: setEmailContext, setAdmin } = useUserContext();
 
   useEffect(() => {
     const stringUser: any = localStorage.getItem("authentication");
-    console.log();
     const email = JSON.parse(stringUser)?.email;
     if (email) {
       router.push("/inputing");
@@ -59,7 +60,6 @@ const App = () => {
     };
 
     try {
-      console.log("logon button pressed", sendData);
       const response = await axios.post(
         "http://localhost:8000/users/login",
         sendData
@@ -76,6 +76,11 @@ const App = () => {
           "authentication",
           JSON.stringify({ email: email })
         );
+        setEmailContext(email);
+        if (response.data.isAdmin) {
+          setAdmin(true);
+          setUsername(response.data.userName);
+        } else setAdmin(false);
         router.push(`/inputing`);
       } else {
         toast({
@@ -86,7 +91,6 @@ const App = () => {
           isClosable: true,
         });
       }
-      console.log(response.data); // Handle the response as needed
     } catch (error) {
       // Show a more specific error message to the user
       return toast({

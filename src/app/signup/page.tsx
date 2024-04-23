@@ -20,7 +20,6 @@ import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import axios from "axios";
-import { createContext, useContext } from "react";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
