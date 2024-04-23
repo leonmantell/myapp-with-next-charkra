@@ -15,25 +15,28 @@ import { Box } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useUserContext } from "@/context/UserContext";
+
 const App = () => {
   const storedEmail = localStorage.getItem("email");
-  const storedUsername = localStorage.getItem("username");
+
+  //   const storedUsername = localStorage.getItem("username");
   const [users, setUsers] = useState([]);
-  0;
-  const getAdmin = async () => {
-    const response = await axios.post("http://localhost:8000/users/getAdmin");
+  const { username } = useUserContext();
+  const getUsers = async () => {
+    const response = await axios.post("http://localhost:8000/users/getusers");
     setUsers(response.data.users);
   };
 
   useEffect(() => {
-    getAdmin();
+    getUsers();
   }, []);
 
   // Display welcome message with username
   return (
     <Box m={40}>
       <Text fontSize="100px" color="tomato">
-        Welcome, {storedUsername} !
+        Welcome, {username} !
       </Text>
       <Box>
         <TableContainer>

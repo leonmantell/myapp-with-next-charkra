@@ -15,6 +15,7 @@ import { endianness } from "os";
 // import { FaLess } from "react-icons/fa6";
 // import { FaLaptopHouse } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { useUserContext } from "@/context/UserContext";
 
 export function App() {
   const [id, setId] = useState(true);
@@ -22,6 +23,7 @@ export function App() {
   const [key, setKey] = useState(false);
   const [signature, setSignature] = useState(false);
   const router = useRouter();
+  const { isAdmin } = useUserContext();
 
   const handleChange = (event: any) => {
     switch (event.target.value) {
@@ -47,22 +49,42 @@ export function App() {
       alignItems="center"
     >
       <Box height="72px" width="100vw" p={[4, 18]} boxShadow={"md"}>
-        <Flex justifyContent="end">
-          <Button
-            width="150px"
-            height="40px"
-            colorScheme="teal"
-            backgroundColor="#FF7E1D"
-            borderRadius="10px"
-            onClick={() => {
-              localStorage.clear();
-              router.push("/login");
-            }}
-          >
-            <Text fontSize="18px" fontFamily="Public Sans">
-              Log out
-            </Text>
-          </Button>
+        <Flex sx={{ justifyContent: "space-between" }}>
+          <Box>
+            {isAdmin && (
+              <Button
+                width="150px"
+                height="40px"
+                colorScheme="teal"
+                backgroundColor="#FF7E1D"
+                borderRadius="10px"
+                onClick={() => {
+                  router.push("/admin");
+                }}
+              >
+                <Text fontSize="18px" fontFamily="Public Sans">
+                  Admin
+                </Text>
+              </Button>
+            )}
+          </Box>
+          <Box>
+            <Button
+              width="150px"
+              height="40px"
+              colorScheme="teal"
+              backgroundColor="#FF7E1D"
+              borderRadius="10px"
+              onClick={() => {
+                localStorage.clear();
+                router.push("/login");
+              }}
+            >
+              <Text fontSize="18px" fontFamily="Public Sans">
+                Log out
+              </Text>
+            </Button>
+          </Box>
         </Flex>
       </Box>
 
