@@ -19,13 +19,14 @@ const App = () => {
   const storedEmail = localStorage.getItem("email");
   const storedUsername = localStorage.getItem("username");
   const [users, setUsers] = useState([]);
-  const getUsers = async () => {
-    const response = await axios.post("http://localhost:8000/users/getUsers");
+  0;
+  const getAdmin = async () => {
+    const response = await axios.post("http://localhost:8000/users/getAdmin");
     setUsers(response.data.users);
   };
 
   useEffect(() => {
-    getUsers();
+    getAdmin();
   }, []);
 
   // Display welcome message with username
