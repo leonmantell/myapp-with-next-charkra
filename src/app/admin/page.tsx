@@ -3,7 +3,6 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
@@ -20,7 +19,7 @@ import { useUserContext } from "@/context/UserContext";
 const App = () => {
   const storedEmail = localStorage.getItem("email");
 
-  //   const storedUsername = localStorage.getItem("username");
+  const storedUsername = localStorage.getItem("username");
   const [users, setUsers] = useState([]);
   const { username } = useUserContext();
   const getUsers = async () => {
@@ -41,7 +40,7 @@ const App = () => {
       <Box>
         <TableContainer>
           <Table variant="simple">
-            <TableCaption>Imperial to metric conversion factors</TableCaption>
+            <TableCaption>Our team members.</TableCaption>
             <Thead>
               <Tr>
                 <Th>No</Th>

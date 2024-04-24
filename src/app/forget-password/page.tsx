@@ -13,16 +13,13 @@ import {
   Link,
   Avatar,
   FormControl,
-  FormHelperText,
-  InputRightElement,
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import { FaUserAlt, FaLock } from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa";
 import axios from "axios";
 
 const CFaUserAlt = chakra(FaUserAlt);
-const CFaLock = chakra(FaLock);
 
 const App = () => {
   const [email, setEmail] = useState("");
@@ -46,7 +43,7 @@ const App = () => {
       console.log(response.data);
       if (response.data.status) {
         toast({
-          title: `reset Successfully.`,
+          title: `Reset Successfully.`,
           description: response.data.msg,
           status: `success`,
           duration: 9000,
@@ -55,15 +52,13 @@ const App = () => {
         router.push("/signup");
       } else {
         toast({
-          title: `reset failed`,
+          title: `Reset Failed`,
           description: response.data.msg,
           status: `error`,
           duration: 9000,
           isClosable: true,
         });
       }
-
-      console.log(response.data); // Handle the response as needed
     } catch (error) {
       // Show a more specific error message to the user
       return toast({
