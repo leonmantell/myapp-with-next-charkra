@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios";
 
 export type UserContent = {
   username: string;
@@ -28,6 +29,20 @@ export const UserContextProvider = ({
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [isAdmin, setAdmin] = useState(false);
+
+  useEffect(() => {
+    const _email = localStorage.getItem("email");
+    if (_email) {
+      axios
+        .post("http://localhost:8000/users/getinfo", { email: _email })
+        .then((response) => {
+          console.log(response);
+          setUsername(response.data.name);
+          setAdmin(response.data.isAdmin);
+        })
+        .catch((err) => {});
+    }
+  }, []);
 
   const value = { username, setUsername, email, setEmail, isAdmin, setAdmin };
 
