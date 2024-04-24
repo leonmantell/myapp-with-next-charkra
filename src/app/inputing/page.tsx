@@ -11,9 +11,6 @@ import {
   Select,
   Text,
 } from "@chakra-ui/react";
-import { endianness } from "os";
-// import { FaLess } from "react-icons/fa6";
-// import { FaLaptopHouse } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "@/context/UserContext";
 
@@ -49,7 +46,7 @@ export function App() {
       alignItems="center"
     >
       <Box height="72px" width="100vw" p={[4, 18]} boxShadow={"md"}>
-        <Flex sx={{ justifyContent: "space-between" }}>
+        <Flex justifyContent={"space-between"}>
           <Box>
             {isAdmin && (
               <Button

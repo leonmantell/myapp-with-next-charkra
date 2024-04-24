@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
 import { Text } from "@chakra-ui/react";
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
-import { Flex, Spacer } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { Flex } from "@chakra-ui/react";
+import React, { useEffect } from "react";
 
 import { useRouter } from "next/navigation";
 
@@ -12,8 +12,7 @@ const App = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const stringUser: any = localStorage.getItem("authentication");
-    const email = JSON.parse(stringUser)?.email;
+    const email: any = localStorage.getItem("email");
     if (email) {
       router.push("/inputing");
     }

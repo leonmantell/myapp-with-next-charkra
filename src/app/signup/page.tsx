@@ -50,7 +50,7 @@ const App = () => {
     if (newData.password === newData.repassword) {
       try {
         const response = await axios.post(
-          "http://localhost:8000/users/signup",
+          process.env.NEXT_PUBLIC_BACKEND_API + "users/signup",
           sendData
         );
         if (response.data.status) {
@@ -61,11 +61,8 @@ const App = () => {
             duration: 1000,
             isClosable: true,
           });
-          const _user = {
-            email: email,
-          };
-          localStorage.setItem("authentication", JSON.stringify(_user));
-          router.push("/welcome");
+          localStorage.setItem("email", email);
+          router.push("/inputing");
         } else {
           toast({
             title: "Account creation failed.",
