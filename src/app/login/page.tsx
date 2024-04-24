@@ -35,9 +35,10 @@ const App = () => {
   const { setUsername, setEmail: setEmailContext, setAdmin } = useUserContext();
 
   useEffect(() => {
-    const stringUser: any = localStorage.getItem("authentication");
-    const email = JSON.parse(stringUser)?.email;
-    if (email) {
+    // const stringUser: any = localStorage.getItem("authentication");
+    // const email = JSON.parse(stringUser)?.email;
+    const storedemail = localStorage.getItem("email");
+    if (storedemail) {
       router.push("/inputing");
     }
   }, []);
@@ -72,10 +73,7 @@ const App = () => {
           duration: 1000,
           isClosable: true,
         });
-        localStorage.setItem(
-          "authentication",
-          JSON.stringify({ email: email })
-        );
+        localStorage.setItem("email", email);
         setEmailContext(email);
         if (response.data.isAdmin) {
           setAdmin(true);
